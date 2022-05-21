@@ -24,58 +24,7 @@ class ProtoCertt:
         self.class_labels = class_labels
         self.predict_results = predict_results
 
-    def model_certainty_list(self, x):
-        """
-        Determines the list of data points whose class is the same as the class of the prototypes
-        :param x:
-        Test set class labels
-        :return:
-        List containing labels of data points whose class is the same as the class of the prototype
-        """
-        same_list = []
-        for i in range(self.predict_results.shape[0]):
-            if x[i] == self.predict_results[i]:
-                same_list.append(x[i])
-        return same_list
-
-    def my_proto_cert(self, x):
-        """
-        Computes the model certainty of the respective prototypes
-        :param x:
-        Class labels of the test set
-        :return:
-        The model certainty with respect to each prototype
-        """
-        proto_cert_list = []
-        d = {i: self.model_certainty_list(x).count(i) for i in self.model_certainty_list(x)}
-        # tensor so u convert it to numpy list
-        dict_ = {i: list(self.predict_results.numpy()).count(i) for i in list(self.predict_results.numpy())}
-        # dict_ = {i: list(self.y_test).count(i) for i in list(self.y_test)}
-        my_list = list(d.items())
-        my_list1 = list(dict_.items())
-        for label in range(self.class_labels.shape[0]):
-            for i in range(len(self.class_labels)):
-                if my_list[label][0] == my_list1[i][0]:
-                    prototype_certainty = my_list[label][1] / my_list1[i][1]
-                    proto_cert_list.append([my_list[label][0], prototype_certainty])
-        return proto_cert_list
-
-    def overall_model_cert(self, x):
-        """
-        Computes the overall model certainty taking into consideration all respective prototype certainties by way of
-        average.
-        :param x:
-        Test set class labels
-        :return:
-        Overall model certainty
-        """
-
-        proto_cert = self.my_proto_cert(x)
-        sum_ = 0
-        for i in range(len(self.my_proto_cert(x))):
-            sum_ += self.my_proto_cert(x)[i][1]
-        sum_proto_cert = sum_ / self.class_labels.shape[0]
-        return sum_proto_cert
+   
 
     def thresh_function(self, x, y, y_, y__, l3):
         """
