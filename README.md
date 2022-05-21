@@ -1,2 +1,2 @@
 # Multiple-Reject-Classification-Options
-Prototype based implementation for determining class related thresholds used in multiple reject classifiaction Strategy
+Prototype based ML implementation for determining class related thresholds used in multiple reject classifiaction Strategy
