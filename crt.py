@@ -1,6 +1,6 @@
 import numpy as np
 from sklearn.metrics import accuracy_score
-import protoceert1
+
 
 def accuracy_rate1(x, y):
     return accuracy_score(x, y)
