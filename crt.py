@@ -72,7 +72,7 @@ class ThreshT:
         :param protocert_1: Class needed to do the sorting for the class_label_security.
         :param j: class_label under consideration for the optimal search
         :return:
-        optimised class related thresh-hold security. The thresh-hold at which we minimum rejection and max accuracy
+        optimised class related thresh-hold security. The thresh-hold at which we have minimum rejection and max accuracy
         """
         empty = []
         y = self.threshh(d1=d1, protocert_1=protocert_1, j=j)
