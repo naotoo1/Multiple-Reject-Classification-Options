@@ -5,12 +5,18 @@
 
 
 # Multiple-Reject-Classification-Options
-Prototype and non prototype-based ML implementation for determining class related thresholds used in multiple reject classifiaction strategy for improving classification reliability
-in scientific technical or high risk areas of ML models utilization
+Prototype and non prototype-based ML implementation for determining class related thresholds used in multiple reject classifiaction strategy for improving classification reliability in scientific technical or high risk areas of ML models utilization
+
+## What is it?
+In Machine learning, the ubiquitous convention has been to train a model to give accurate/reliable predictions on all available test data. The reality of this convention is far from the truth since trained models may sometimes give unexpected/unwanted results. 
+
+In areas requiring high reliability, ML models should be able to say no idea to low confident decisions. Technically, ML models must learn to reject low confidence predictions when there is evidence of uncertainty about some decisions made. 
+
+This sincerity reduces the risk by increasing the reliability of ML models, opening the door for further investigation and new strategies to predict the rejected test data points.
 
 ## How to use
 The implementation of the constrained optimization problem where users want a very low classification rejection rate and high model performance is shown ```crt.py```
-An example can be found in ```crt_chow_bcd.py```.
+An example can be found in ```crt_chow_bcd.py``` where a simulation has been done to test the performance to the implemented algorithm for the chow method and the crt method.
 
 
 ## Simulation
