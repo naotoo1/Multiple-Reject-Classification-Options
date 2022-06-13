@@ -1,12 +1,10 @@
-"""Module to Determine model classification Certainty and thresh-hold label security"""
-import numpy as np
-from scipy.spatial import distance
-import matplotlib.pyplot as plt
+"""Module to determine a unique and multiple reject options for improving classification reliability
+ for both prototype and non-prototype-based models"""
 
 
 class ProtoCertt:
     """
-    Prototype certainty and overall model certainty
+    Class to determine a unique and multiple reject options for improving classification reliability
     :param
     x_test: array, shape=[num_data,num_features]
             Where num_data is the number of samples and num_features refers to the number of features.
@@ -19,12 +17,8 @@ class ProtoCertt:
 
     """
 
-    def __init__(self, y_test, class_labels, predict_results):
+    def __init__(self, y_test):
         self.y_test = y_test
-        self.class_labels = class_labels
-        self.predict_results = predict_results
-
-   
 
     def thresh_function(self, x, y, y_, y__, l3):
         """
