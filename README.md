@@ -5,19 +5,19 @@
 
 
 # Multiple-Reject-Classification-Options
-Prototype based ML implementation for determining class related thresholds used in multiple reject classifiaction Strategy
+Prototype and non prototype-based ML implementation for determining class related thresholds used in multiple reject classifiaction strategy for improving classification reliability
+in scientific technical or high risk areas of ML models utilization
 
 ## How to use
 The implementation of the constrained optimization problem where users want a very low classification rejection rate and high model performance is shown ```crt.py```
-An example can be found in ```crt_chow_iris.py```
+An example can be found in ```crt_chow_bcd.py```.
 
 
 ## Simulation
 
-A simulated results from multiple reject thresholds for improving classification reliability using the CRT vs Chow is shown below for GLVQ
+A simulated results from multiple reject thresholds for improving classification reliability using the CRT vs Chow is shown below for GLVQ using the breast cancer diagnostic data
 
-![Figure_4](https://user-images.githubusercontent.com/82911284/165868376-edfd75fd-dc67-41f1-a75a-305f2a72e06f.png)
-
+![Figure_1](https://user-images.githubusercontent.com/82911284/173432371-74790b50-f264-46c6-aecd-49b7700ace4a.png)
 
 ## References
 
