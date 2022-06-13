@@ -3,10 +3,22 @@ from sklearn.metrics import accuracy_score
 
 
 def accuracy_rate1(x, y):
+    """
+
+    :param x: True labels
+    :param y: predicted labels
+    :return:  accuracy score
+    """
     return accuracy_score(x, y)
 
 
 def rejection_rate(x, y):
+    """
+
+    :param x: predicted labels below the thresh-hold confidence
+    :param y: predicted labels regardless of thresh-hold confidence
+    :return: rejection rate
+    """
     z = len(x) / len(y)
     return z
 
@@ -24,9 +36,7 @@ class ThreshT:
 
     """
 
-    def __init__(self, y_test, class_labels, predict_results, reject_rate1):
-        self.y_test = y_test
-        self.class_labels = class_labels
+    def __init__(self, predict_results, reject_rate1):
         self.predict_results = predict_results
         self.rejection_rate1 = reject_rate1
 
@@ -51,13 +61,20 @@ class ThreshT:
         y = 1 / j_
 
         while should_continue:
-            y = y + 0.1
+            y = y + 0.01
+            # list of predicted labels whose confidence is less than the thresh-hold for a given class
             index_listgl = protocert_1.thresh_function(x=d1, y=y, y_='<', y__='l', y___=j)
+            # list of predicted labels regardless of the confidence thresh-hold for a given class
             index_listgl_ = protocert_1.thresh_function(x=d1, y=0, y_='>', y__='l', y___=j)
+            # list containing index of predicted labels greater than or equal a given confidence thresh-hold
             index_listgi = protocert_1.thresh_function(x=d1, y=y, y_='>=', y__='i', y___=j)
+            # list containing predicted labels greater than or equal to a given confidence thresh-hold
             index_listgi_ = protocert_1.thresh_function(x=d1, y=y, y_='>=', y__='l', y___=j)
+            # computes the rejection rate based on the confidence thresh-hold
             z = rejection_rate(index_listgl, index_listgl_)
+            # Actual labels of non-rejected classifications using the using their indexes
             true_labels = protocert_1.thresh_y_test(x=index_listgi)
+            # computes accuracy of non-rejected classification
             z_ = accuracy_rate1(true_labels, index_listgi_)
             empty1.append([y, z_, z])
             empty2.append(z)
@@ -72,7 +89,8 @@ class ThreshT:
         :param protocert_1: Class needed to do the sorting for the class_label_security.
         :param j: class_label under consideration for the optimal search
         :return:
-        optimised class related thresh-hold security. The thresh-hold at which we have minimum rejection and max accuracy
+        optimised class related thresh-hold security. The thresh-hold at which we have
+        minimum rejection and max accuracy
         """
         empty = []
         y = self.threshh(d1=d1, protocert_1=protocert_1, j=j)
