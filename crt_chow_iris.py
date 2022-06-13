@@ -3,10 +3,10 @@ import prototorch as pt
 import pytorch_lightning as pl
 import torch.utils.data
 import prototorch.models
-from sklearn.datasets import load_iris
+from sklearn.datasets import load_breast_cancer
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from label_security1 import LabelSecurity
+from prosemble import LabelSecurity
 from protocert import ProtoCert
 from sklearn.metrics import accuracy_score
 from crt import ThreshT
@@ -15,7 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Model 1
-model_1 = pt.models.glvq.GLVQ(hparams=dict(distribution=[1, 1, 1]),
+model_1 = pt.models.glvq.GLVQ(hparams=dict(distribution=[1, 1]),
                               prototypes_initializer=pt.initializers.ZerosCompInitializer(2))
 
 # Summary of model
@@ -23,10 +23,10 @@ print(model_1)
 
 # Data_set and scaling
 scaler = StandardScaler()
-X, y = load_iris(return_X_y=True)
+X, y = load_breast_cancer(return_X_y=True)
 X = X[:, 0:2]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3,shuffle=True)
 
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
@@ -80,8 +80,8 @@ d1 = label_security_1.label_sec_f(y_pred_1)
 print(d1)
 
 # summary of model certainty
-protocert_1 = ProtoCert(y_test=y_test, class_labels=m_1, predict_results=y_pred_1)
-protocert_1N = ProtoCertt(y_test=y_test, class_labels=m_1, predict_results=y_pred_1)
+protocert_1 = ProtoCert(y_test=y_test)
+protocert_1N = ProtoCertt(y_test=y_test)
 
 # simulation sets
 simulation_list1 = np.arange(0, 0.2, 0.01)
@@ -92,11 +92,11 @@ simulation_list = np.linspace(0, 0.7, len(simulation_list1))
 def simulation(x):
     sim_list = []
     for i in x:
-        th = ThreshT(y_test=y_test, class_labels=m_1, predict_results=y_pred_1, reject_rate1=i)
+        th = ThreshT(predict_results=y_pred_1, reject_rate1=i)
         h1 = th.thresh_new(d1, protocert_1, j=0)
         h2 = th.thresh_new(d1, protocert_1, j=1)
-        h3 = th.thresh_new(d1, protocert_1, j=2)
-        sim_list.append([h1, h2, h3])
+        # h3 = th.thresh_new(d1, protocert_1, j=2)
+        sim_list.append([h1, h2])
     return sim_list
 
 
@@ -108,8 +108,8 @@ zz = simulation(simulation_list1)
 def accuracy_crt():
     accuracy_list = []
     for i in range(len(zz)):
-        non_rejected_labels = protocert_1N.thresh_function(x=d1, y=zz[i], y_='>=', y__='l', l3=[0, 1, 2])
-        index_non_rejected_labels = protocert_1N.thresh_function(x=d1, y=zz[i], y_='>=', y__='i', l3=[0, 1, 2])
+        non_rejected_labels = protocert_1N.thresh_function(x=d1, y=zz[i], y_='>=', y__='l', l3=[0, 1])
+        index_non_rejected_labels = protocert_1N.thresh_function(x=d1, y=zz[i], y_='>=', y__='i', l3=[0, 1])
         true_labelsN = protocert_1N.thresh_y_test(x=index_non_rejected_labels)
         accuracy = accuracy_score(y_true=true_labelsN, y_pred=non_rejected_labels)
         accuracy_list.append(accuracy)
