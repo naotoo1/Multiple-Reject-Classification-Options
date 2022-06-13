@@ -6,11 +6,8 @@ import prototorch.models
 from sklearn.datasets import load_breast_cancer
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from prosemble import LabelSecurity
-from protocert import ProtoCert
+from prosemble import LabelSecurity,ThreshT, Protocert, Protocertt
 from sklearn.metrics import accuracy_score
-from crt import ThreshT
-from procertnew import ProtoCertt
 import numpy as np
 import matplotlib.pyplot as plt
 
