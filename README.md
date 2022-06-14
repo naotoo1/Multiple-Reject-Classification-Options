@@ -5,7 +5,7 @@
 
 
 # Multiple-Reject-Classification-Options
-Prototype and non prototype-based ML implementation for determining class related thresholds used in multiple reject classifiaction strategy for improving classification reliability in scientific technical or high risk areas of ML models utilization
+Prototype and non prototype-based ML implementation for determining class related thresholds used in multiple reject classification strategy for improving classification reliability in scientific technical or high risk areas of ML models utilization
 
 ## What is it?
 In Machine learning, the ubiquitous convention has been to train a model to give accurate/reliable predictions on all available test data. The reality of this convention is far from the truth since trained models may sometimes give unexpected/unwanted results. 
