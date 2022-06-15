@@ -20,6 +20,17 @@ An example can be found in ```crt_chow_bcd.py``` where a simulation has been don
 
 An advance example on the application of class related thresh-holds in the emsemble diagnosis of breast cancer disease is shaown below:
 
+Import some libraries
+```python
+import numpy as np
+from sklearn.datasets import load_breast_cancer
+from prosemble import Hybrid, ThreshT, ProtoCert, ProtoCertt
+import pickle
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+```
+
 load some ```train models``` as pickle files
 ```python
 pickle_in1 = open("svc.pkl", "rb")
