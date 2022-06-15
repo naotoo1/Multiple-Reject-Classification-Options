@@ -180,7 +180,7 @@ A simulated result from multiple reject thresholds for improving classification 
 
 Even though the chow method is known to produce optimal results, its shortcomings exist in the fact that users will most definitely not have access to the prior knowledge of the confidence thresh-holds to be used universally for all classes in the test cases. The significance of the CRT approach lies in the option which allows users to provide a prior maximum rejection rate that is readily available to the users.
 
-We observe below that the CRT method efficiently models chows performance and even beat it in the long run. Hence the CRT approach provides a better option in the classification reject strategy. This has been demonstated by the implemtation of crt in the prosemble ML package and exmplified in the breast cancer diagnoses test case.
+We observe below that the CRT method efficiently models chows performance and even beat it in the long run. Hence the CRT approach provides a better option in the classification reject strategy. This has been demonstrated with the implementation of CRT as part of the [prosemble ML package](https://github.com/naotoo1/Multiple-Reject-Classification-Options) and tested in practical advance use case for the  breast cancer diagnosis study.
 
 
 ![Figure_1](https://user-images.githubusercontent.com/82911284/173432371-74790b50-f264-46c6-aecd-49b7700ace4a.png)
