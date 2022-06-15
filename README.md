@@ -124,12 +124,12 @@ hard_prob = ensemble.prob(X_test, all_pred)
 soft_prob = ensemble.sprob(X_test, all_sec)
 ```
 
-set-up the object instance for class related confidence thresh-hold using the ThreshT class from prosemble ML package. NB: The rejection rate determines the maximum percentage of the test cases for which the ensemble model may reject based on low confidence decisions.
+Set-up the object instance for class related confidence thresh-hold using the ThreshT class from prosemble ML package. NB: The rejection rate determines the maximum percentage of the test cases for which the ensemble model may reject based on low confidence decisions.
 ```python
 crt = ThreshT(predict_results=prediction1, reject_rate1=0.1)
 ```
 
-set-up the object instance for sorting based on crt algorithm using the ProtoCert class from prosemble ML package
+Set-up the object instance for sorting based on crt algorithm using the ProtoCert class from prosemble ML package
 ```python
 protocert = ProtoCert(y_test=y_test)
 ```
@@ -145,7 +145,7 @@ h1 = crt.thresh_new(d1=d1, protocert_1=protocert, j=0)
 h2 = crt.thresh_new(d1=d1, protocert_1=protocert, j=1)
 ```
 
-set-up the object instance needed to do sorting for final results using the ProtoCertt class from prosemble.
+Set-up the object instance needed to do sorting for final results using the ProtoCertt class from prosemble.
 ```python
 protocertt = ProtoCertt(y_test=y_test)
 ```
@@ -176,7 +176,12 @@ print(get_rejected_data(x=index_rejected_labels, y=X_test))
 
 ## Simulation
 
-A simulated results from multiple reject thresholds for improving classification reliability using the CRT vs Chow is shown below for GLVQ using the breast cancer diagnostic data
+A simulated result from multiple reject thresholds for improving classification reliability using the CRT vs Chow is shown below for GLVQ using the breast cancer diagnostic data.
+
+Even though the chow method is known to produce optimal results, its shortcomings exist in the fact that users will most definitely not have access to the prior knowledge of the confidence thresh-holds to be used universally for all classes in the test cases. The significance of the CRT approach lies in the option which allows users to provide a prior maximum rejection rate that is readily available to the users.
+
+We observe below that the CRT method efficiently models chows performance and even beat it in the long run. Hence the CRT approach provides a better option in the classification reject strategy. This has been demonstated by the implemtation of crt in the prosemble ML package and exmplified in the breast cancer diagnoses test case.
+
 
 ![Figure_1](https://user-images.githubusercontent.com/82911284/173432371-74790b50-f264-46c6-aecd-49b7700ace4a.png)
 
