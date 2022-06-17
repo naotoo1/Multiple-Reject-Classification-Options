@@ -134,7 +134,7 @@ hard_prob = ensemble.prob(X_test, all_pred)
 # confidence of the prediction using soft voting
 soft_prob = ensemble.sprob(X_test, all_sec)
 ```
-
+#### CRT Approach 
 Set-up the object instance for class related confidence thresh-hold using the ThreshT class from prosemble ML package. NB: The rejection rate determines the maximum percentage of the test cases for which the ensemble model may reject based on low confidence decisions.
 ```python
 crt = ThreshT(predict_results=prediction1, reject_rate1=0.1)
@@ -180,6 +180,43 @@ rejected_labels = protocertt.thresh_function(x=d1, y=[h1, h2], y_='<', y__='l', 
 
 # Access index of rejected ensemble labels
 index_rejected_labels = protocertt.thresh_function(x=d1, y=[h1, h2], y_='<', y__='i', l3=[0, 1])
+
+# Access rejected data points in the test data.
+print(get_rejected_data(x=index_rejected_labels, y=X_test))
+```
+
+#### Chow's Approach 
+choose a universal confidence thresh-hold for all the classes based on a prior knowledge(chow)
+
+Set-up the object instance for class responsible for sorting based on chow's approach
+```python
+protocert = ProtoCert(y_test=y_test)
+```
+Get predicted labels from the ensemble along with the confidence.
+```python
+d1 = get_ens_confidence(prediction2, soft_prob)
+```
+Determine non-rejected classifications based on the class realted thresh-holds determined by the crt algorithm and check performance as against when the ensemble model predicted on all the test cases.
+```python
+# choose a universal confidence thresh-hold for all the classes based on a prior knowledge(chow)
+non_rejected_labels = protocert.thresh_function(x=d1, y=0.8, y_='>=', y__='l', y___=None)
+index_non_rejected_labels = protocert.thresh_function(x=d1, y=0.8, y_='>=', y__='i', y___=None)
+true_labelsN = protocert.thresh_y_test(x=index_non_rejected_labels)
+
+# accuracy of model without rejection
+accuracy1 = accuracy_score(y_true=y_test, y_pred=prediction2)
+
+# accuracy of model with rejection based on chows appraoch
+accuracy = accuracy_score(y_true=true_labelsN, y_pred=non_rejected_labels)
+```
+Get access to the rejected test cases for further investigation or for further considerations in deciding on the diagnosis.
+
+```python
+# Access rejected emsemble predicted labels
+rejected_labels = protocert.thresh_function(x=d1, y=0.8, y_='<', y__='l', y___=None)
+
+# Access index of rejected labels
+index_rejected_labels = protocert.thresh_function(x=d1, y=0.8, y_='<', y__='i', y___=None)
 
 # Access rejected data points in the test data.
 print(get_rejected_data(x=index_rejected_labels, y=X_test))
