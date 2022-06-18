@@ -224,7 +224,7 @@ print(get_rejected_data(x=index_rejected_labels, y=X_test))
 
 ## Simulation
 
-A simulated result from multiple reject thresholds for improving classification reliability using the CRT vs Chow is shown below for GLVQ using the breast cancer diagnostic data.
+A simulated result from multiple reject thresholds for improving classification reliability using the CRT vs Chow is shown in the figure below for GLVQ using the breast cancer diagnostic data.
 
 Even though the chow method is known to produce optimal results, its shortcomings exist in the fact that users will most definitely not have access to the prior knowledge of the confidence thresh-holds to be used universally for all classes in the test cases. The significance of the CRT approach lies in the option which allows users to provide a prior maximum rejection rate that is readily available to the users.
 
