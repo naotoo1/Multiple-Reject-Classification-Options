@@ -18,7 +18,7 @@ This sincerity reduces the risk by increasing the reliability of ML models, open
 The implementation of the constrained optimization problem where users want a very low classification rejection rate and high model performance is shown ```crt.py```
 An example can be found in ```crt_chow_bcd.py``` where a simulation has been done to test the performance to the implemented algorithm for the chow method and the crt method.
 
-An advance example on the application of class related thresh-holds in the emsemble diagnosis of breast cancer disease is shaown below:
+An advance example on the application of class related thresh-holds in the ensemble diagnosis of breast cancer disease is shown below:
 
 Import some libraries
 ```python
