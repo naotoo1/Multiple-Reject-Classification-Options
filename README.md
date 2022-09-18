@@ -241,6 +241,10 @@ index_rejected_labels = protocert.thresh_function(x=d1, y=0.8, y_='<', y__='i', 
 # Access rejected data points in the test data.
 print(get_rejected_data(x=index_rejected_labels, y=X_test))
 ```
+It must be noted that chow's appraoch is highly dependent on the prior knowledge of user. Hence the visualization may done either using train or test set. 
+![Figure_11](https://user-images.githubusercontent.com/82911284/190880729-a5894c43-2a29-4ef9-a665-73dffc3a6d18.png)
+
+![Figure_21](https://user-images.githubusercontent.com/82911284/190880725-3d6f788f-df40-466c-b8bb-147d1b19f660.png)
 
 ## Simulation
 
