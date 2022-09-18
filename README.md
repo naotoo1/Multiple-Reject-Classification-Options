@@ -24,7 +24,7 @@ Import some libraries
 ```python
 import numpy as np
 from sklearn.datasets import load_breast_cancer
-from prosemble import Hybrid, ThreshT, ProtoCert, ProtoCertt
+from prosemble import Hybrid, ThreshT, ProtoCert, ProtoCertt, visualize
 import pickle
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
@@ -196,7 +196,27 @@ Get predicted labels from the ensemble along with the confidence.
 ```python
 d1 = get_ens_confidence(prediction2, soft_prob)
 ```
-Determine non-rejected classifications based on the class realted thresh-holds determined by the crt algorithm and check performance as against when the ensemble model predicted on all the test cases.
+Determine non-rejected classifications based on the class realted thresh-holds determined by the chow's approach and check performance as against when the ensemble model predicted on all the test cases.
+one may fall on the visualization tool in prosemble to determine to universal confidence thresh-hold
+
+```python
+post_confidences_0 = protocert.thresh_function(x=d1, y=0, y_='>=', y__='s', y___=0)
+post_confidences_1 = protocert.thresh_function(x=d1, y=0, y_='>=', y__='s', y___=1)
+posterior_confidence = [post_confidences0, post_confidences1]
+```
+Visualize the posterior label securities 
+```python
+vis = visualize(confidence_list=posterior_confidence, num_classes=2, colors=['#00FF00', '#FF00FF'],
+                class_labels=['class 0', 'class 1'])
+
+# get summary visualization for all classes
+vis.get_vis(x='plot for posterior label securities')
+
+# get visualization for each class
+vis.get_vis_(x='Confidence', y='Frequency', z='Evaluation of confidence threshold for')
+
+```
+
 ```python
 # choose a universal confidence thresh-hold for all the classes based on a prior knowledge(chow)
 non_rejected_labels = protocert.thresh_function(x=d1, y=0.8, y_='>=', y__='l', y___=None)
